@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Vehicle, VehicleDocument } from './schemas/vehicle.schema';
+import { Vehicle, VehicleDocument, FuelType } from './schemas/vehicle.schema';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { UsersService } from '../users/users.service';
 
@@ -17,6 +17,7 @@ export class VehiclesService implements OnModuleInit {
       await this.vehicleModel.create({
         _id: new Types.ObjectId(VehiclesService.DEFAULT_VEHICLE_ID),
         name: 'Default Car',
+        fuelType: FuelType.GASOLINE,
         userId: new Types.ObjectId(UsersService.DEFAULT_USER_ID),
       });
     }
@@ -29,6 +30,7 @@ export class VehiclesService implements OnModuleInit {
   async create(dto: CreateVehicleDto): Promise<VehicleDocument> {
     return this.vehicleModel.create({
       name: dto.name,
+      fuelType: dto.fuelType,
       userId: new Types.ObjectId(dto.userId),
     });
   }

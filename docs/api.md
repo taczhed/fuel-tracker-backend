@@ -71,6 +71,7 @@ Authorization: Bearer <API_TOKEN>
   {
     "_id": "664f1e2b3c4d5e6f7a8b9c0d",
     "name": "Toyota Corolla",
+    "fuelType": "gasoline",
     "userId": "000000000000000000000001"
   }
 ]
@@ -91,15 +92,19 @@ Content-Type: application/json
 ```json
 {
   "name": "Toyota Corolla",
+  "fuelType": "gasoline",
   "userId": "000000000000000000000001"
 }
 ```
+
+`fuelType` — required, one of: `gasoline`, `diesel`.
 
 **Response**
 ```json
 {
   "_id": "664f1e2b3c4d5e6f7a8b9c0d",
   "name": "Toyota Corolla",
+  "fuelType": "gasoline",
   "userId": "000000000000000000000001"
 }
 ```
@@ -124,9 +129,13 @@ Authorization: Bearer <API_TOKEN>
     "mileage": 15230,
     "liters": 42.5,
     "cost": 68.00,
-    "location": "Shell Station",
+    "location": "52.2297,21.0122",
     "userId": "000000000000000000000001",
-    "vehicleId": "664f1e2b3c4d5e6f7a8b9c0d",
+    "vehicleId": {
+      "_id": "664f1e2b3c4d5e6f7a8b9c0d",
+      "name": "Toyota Corolla",
+      "fuelType": "gasoline"
+    },
     "createdAt": "2026-03-25T10:00:00.000Z",
     "updatedAt": "2026-03-25T10:00:00.000Z"
   }
@@ -188,11 +197,12 @@ On startup, default data is created if none exists:
 
 ### Vehicle
 
-| Field    | Value                      |
-|----------|----------------------------|
-| `_id`    | `000000000000000000000001` |
-| `name`   | `Default Car`              |
-| `userId` | `000000000000000000000001` |
+| Field      | Value                      |
+|------------|----------------------------|
+| `_id`      | `000000000000000000000001` |
+| `name`     | `Default Car`              |
+| `fuelType` | `gasoline`                 |
+| `userId`   | `000000000000000000000001` |
 
 ### Refuels
 

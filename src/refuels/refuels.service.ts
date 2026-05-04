@@ -29,6 +29,7 @@ export class RefuelsService implements OnModuleInit {
         userId: new Types.ObjectId(userId),
         vehicleId: new Types.ObjectId(vehicleId),
       })
+      .populate('vehicleId', 'name fuelType')
       .sort({ createdAt: -1 })
       .exec();
   }

@@ -20,7 +20,7 @@ export class Refuel {
   @Prop({ type: Types.ObjectId, required: true })
   userId: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, required: true })
+  @Prop({ type: Types.ObjectId, ref: 'Vehicle', required: true })
   vehicleId: Types.ObjectId;
 }
 
