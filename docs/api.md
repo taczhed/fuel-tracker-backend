@@ -177,9 +177,29 @@ Content-Type: application/json
 
 ## Default seed
 
-On startup, a default user is created if none exists:
+On startup, default data is created if none exists:
 
-| Field | Value                      |
-|-------|----------------------------|
-| `_id` | `000000000000000000000001` |
+### User
+
+| Field      | Value                      |
+|------------|----------------------------|
+| `_id`      | `000000000000000000000001` |
 | `username` | `Jan Kowalski`             |
+
+### Vehicle
+
+| Field    | Value                      |
+|----------|----------------------------|
+| `_id`    | `000000000000000000000001` |
+| `name`   | `Default Car`              |
+| `userId` | `000000000000000000000001` |
+
+### Refuels
+
+| `mileage` | `liters` | `cost`   | `location`        |
+|------------|----------|----------|--------------------|
+| 12000      | 42.5     | 265.30   | `52.2297,21.0122`  |
+| 12450      | 40.1     | 252.80   | `50.0647,19.9450`  |
+| 12900      | 43.7     | 274.15   | `54.3520,18.6466`  |
+
+All refuels are linked to the default user and vehicle. The `location` field contains Google Maps coordinates.
