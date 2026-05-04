@@ -8,8 +8,11 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "docker": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "db": "docker start mongo || docker run -d --name mongo -p 27017:27017 mongo",
     "start": "nest start",
-    "start:dev": "nest start --watch",
+    "start:dev": "npm run db && nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
