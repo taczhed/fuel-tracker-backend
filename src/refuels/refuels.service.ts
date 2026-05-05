@@ -1,8 +1,9 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Refuel, RefuelDocument } from './schemas/refuel.schema';
 import { CreateRefuelDto } from './dto/create-refuel.dto';
+import { UpdateRefuelDto } from './dto/update-refuel.dto';
 import { UsersService } from '../users/users.service';
 import { VehiclesService } from '../vehicles/vehicles.service';
 
@@ -40,5 +41,22 @@ export class RefuelsService implements OnModuleInit {
       userId: new Types.ObjectId(dto.userId),
       vehicleId: new Types.ObjectId(dto.vehicleId),
     });
+  }
+
+  async update(id: string, dto: UpdateRefuelDto): Promise<RefuelDocument> {
+    const refuel = await this.refuelModel
+      .findByIdAndUpdate(id, { $set: dto }, { new: true })
+      .exec();
+    if (!refuel) {
+      throw new NotFoundException(`Refuel with id ${id} not found`);
+    }
+    return refuel;
+  }
+
+  async delete(id: string): Promise<void> {
+    const result = await this.refuelModel.findByIdAndDelete(id).exec();
+    if (!result) {
+      throw new NotFoundException(`Refuel with id ${id} not found`);
+    }
   }
 }

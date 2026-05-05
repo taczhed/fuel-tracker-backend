@@ -184,6 +184,61 @@ Content-Type: application/json
 
 ---
 
+### PATCH /refuels/:id
+Update a refuel entry.
+
+```
+PATCH /refuels/664f1e2b3c4d5e6f7a8b9c0e
+Authorization: Bearer <API_TOKEN>
+Content-Type: application/json
+```
+
+**Body** (all fields optional)
+```json
+{
+  "mileage": 15300,
+  "liters": 44.0,
+  "cost": 70.00,
+  "location": "52.4064,16.9252"
+}
+```
+
+**Response**
+```json
+{
+  "_id": "664f1e2b3c4d5e6f7a8b9c0e",
+  "mileage": 15300,
+  "liters": 44.0,
+  "cost": 70.00,
+  "location": "52.4064,16.9252",
+  "userId": "000000000000000000000001",
+  "vehicleId": "664f1e2b3c4d5e6f7a8b9c0d",
+  "createdAt": "2026-03-25T10:00:00.000Z",
+  "updatedAt": "2026-05-05T12:00:00.000Z"
+}
+```
+
+Returns `404` if the refuel is not found.
+
+---
+
+### DELETE /refuels/:id
+Delete a refuel entry.
+
+```
+DELETE /refuels/664f1e2b3c4d5e6f7a8b9c0e
+Authorization: Bearer <API_TOKEN>
+```
+
+**Response**
+```
+204 No Content
+```
+
+Returns `404` if the refuel is not found.
+
+---
+
 ## Default seed
 
 On startup, default data is created if none exists:
